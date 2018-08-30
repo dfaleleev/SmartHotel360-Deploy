@@ -1,0 +1,142 @@
+{
+  "$schema": "https://schema.management.azure.com/schemas/2015-01-01/deploymentTemplate.json#",
+  "contentVersion": "1.0.0.0",
+  "parameters": {
+    "sql_server_name": {
+      "type": "string"
+    },
+    "sql_user_name": {
+      "type": "string"
+    },
+    "sql_user_password": {
+      "type": "string"
+    },
+    "bookings_db_name": {
+      "type": "string"
+    },
+    "reviews_site_name": {
+      "type": "string"
+    },
+    "reviews_db_name": {
+      "type": "string"
+    },    
+    "hotels_db_name": {
+      "type": "string"
+    },
+    "suggestions_db_name": {
+      "type": "string"
+    },
+    "tasks_db_name":{
+      "type": "string"
+    },
+    "profiles_db_name": {
+      "type": "string"
+    },
+    "storageImages_name": {
+      "type": "string"
+    },
+    "storageAccountType": {
+      "type": "string",
+      "allowedValues": [
+        "Standard_LRS",
+        "Standard_GRS",
+        "Standard_ZRS",
+        "Premium_LRS"
+      ]
+    },       
+    "postgres_server_name": {
+      "type": "string"
+    },
+    "postgres_user_name": {
+      "type": "string",
+      "minLength": 1,
+      "metadata": {
+        "description": "Postgres administrator login name"
+      }
+    },
+    "postgres_user_password": {
+      "type": "string",
+      "minLength": 8,
+      "maxLength": 128,
+      "metadata": {
+        "description": "Database administrator password"
+      }
+    },
+    "postgresDTU": {
+      "type": "int",
+      "allowedValues": [
+        50,
+        100
+      ],
+      "defaultValue": 50,
+      "metadata": {
+        "description": "Azure database for PostgreSQL pricing tier"
+      }
+    },
+    "postgresSkuName": {
+      "type": "string",
+      "allowedValues": [
+        "GP_Gen5_32",
+        "GP_Gen4_2",
+        "B_Gen4_2",
+        "B_Gen5_1",
+        "B_Gen5_2"
+      ],
+      "defaultValue": "B_Gen5_1",
+      "metadata": {
+        "description": "Azure database for PostgreSQL sku name : PostgreSQLB100 (Basic 100 DTU tier) and PostgreSQLB50 (Basic 50 DTU tier)"
+      }
+    },
+    "postgresSkuSizeMB": {
+      "type": "int",
+      "metadata": {
+        "description": "Azure database for PostgreSQL Sku Size "
+      }
+    },
+    "postgresSkuTier": {
+      "type": "string",
+      "allowedValues": [
+        "Basic"
+      ],
+      "defaultValue": "Basic",
+      "metadata": {
+        "description": "Azure database for PostgreSQL pricing tier"
+      }
+    },
+    "postgresqlVersion": {
+      "type": "string",
+      "allowedValues": [
+        "9.6",
+        "10.3"
+      ],
+      "metadata": {
+        "description": "PostgreSQL version"
+      }
+    },         
+    "unique_resources": {
+      "type": "bool"
+    },
+    "environment": {
+      "type": "string"
+    }
+  },
+  "variables": {
+    "unique_str": "[if(parameters('unique_resources'),uniqueString(resourceGroup().id), '')]",
+    "suffix": "[concat(parameters('environment'), variables('unique_str'))]",
+    "k8sinsights_name": "[concat('appinsights',variables('suffix'))]"
+  },
+  "resources": [
+    {
+      "apiVersion": "2015-05-01",
+      "name": "[variables('k8sinsights_name')]",
+      "type": "Microsoft.Insights/components",
+      "location": "[resourceGroup().location]",
+      "tags": {
+        "displayName": "k8s appInsights"
+      },
+      "properties": {
+        "ApplicationId": "[variables('k8sinsights_name')]"
+      }
+    }
+  ]
+}

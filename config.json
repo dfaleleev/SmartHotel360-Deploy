@@ -1,0 +1,19 @@
+{
+    "location" : "eastus",
+    "acrGroupName" : "acr",
+    "acrName" : "sh360",
+    
+    "aksGroupName" : "sh-d2",
+    "aksName" : "sh-k8s-d2",
+
+    "apiDnsName" : "sh360-api-d2",
+
+    "dataLocation" : "westus",
+    "dataGroupName" : "sh-d2-data",
+
+    "webGroupName" : "sh-d3-web",
+
+    "configStorageName": "sh360cfg",
+
+    "_" : ""
+}

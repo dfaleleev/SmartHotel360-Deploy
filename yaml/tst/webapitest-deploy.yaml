@@ -1,0 +1,16 @@
+apiVersion: extensions/v1beta1
+kind: Deployment
+metadata:
+  name: webapitest-deploy
+spec:
+  replicas: 1
+  template:
+    metadata:
+      labels:
+        app: webapitest
+    spec:
+      containers:
+      - name: webapitest
+        image: sh360.azurecr.io/webapitest:v3
+        ports:
+        - containerPort: 80

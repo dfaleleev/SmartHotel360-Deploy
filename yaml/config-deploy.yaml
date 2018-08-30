@@ -1,0 +1,16 @@
+apiVersion: extensions/v1beta1
+kind: Deployment
+metadata:
+  name: config-files
+spec:
+  replicas: 1
+  template:
+    metadata:
+      labels:
+        app: config-files
+    spec:
+      containers:
+      - name: config-files
+        image: sh360.azurecr.io/smarthotels/sh360-config:latest
+        ports:
+        - containerPort: 80
