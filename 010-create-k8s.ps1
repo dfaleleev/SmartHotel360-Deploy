@@ -47,7 +47,7 @@ function MainScript($acrName, $acrGroupName, $aksName, $aksGroupName)
     # Create new AKS cluster
     if ([string]::IsNullOrEmpty($clientId) ) {
         Write-Host "Create new AKS cluster $aksName ($groupName)" -ForegroundColor Yellow
-        az aks create --resource-group $groupName --name $aksName --node-count 1 --generate-ssh-keys
+        az aks create --resource-group $groupName --name $aksName --node-count 1 --generate-ssh-keys --kubernetes-version 1.11.2
 
         # Get the id of the service principal configured for AKS
         $clientId = Get-AksId $groupName $aksName

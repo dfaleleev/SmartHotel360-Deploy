@@ -12,7 +12,7 @@ spec:
   #   - sh360-api-d1.eastus.cloudapp.azure.com
   #   secretName: tls-secret
   rules:
-  - host: sh360-api-d2.eastus.cloudapp.azure.com
+  - host: sh360-api-d1.eastus.cloudapp.azure.com
     http:
       paths:
       - path: /ng
