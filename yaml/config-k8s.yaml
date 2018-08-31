@@ -29,6 +29,6 @@ data:
   Reviews_sql_server_url: jdbc:postgresql://reviews-data:5432/reviewsdb
   Reviews_sql_user_name: sh360
   Reviews_sql_user_password: Passw0rd!
-  ApplicationInsights__InstrumentationKey: 38950fcb-aa16-4fb4-ad4f-d334e9387943
+  ApplicationInsights__InstrumentationKey: ac541322-ecb0-42ad-b7d2-666835f6c079
   Discounts_profilesvc: http://profiles/
   Profiles_ConnectionStrings__DefaultConnection: Server=tcp:sh360sqlpublic.database.windows.net,1433;Initial Catalog=ProfilesDb;Initial Catalog=ProfilesDb;Persist Security Info=False;User ID=sh360;Password=Password!;MultipleActiveResultSets=False;Connection Timeout=30;

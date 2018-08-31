@@ -3,15 +3,16 @@
     "acrGroupName" : "acr",
     "acrName" : "sh360",
     
-    "aksGroupName" : "sh-d2",
-    "aksName" : "sh-k8s-d2",
+    "aksGroupName" : "sh-d1-aks",
+    "aksName" : "sh-k8s-d1",
 
-    "apiDnsName" : "sh360-api-d2",
+    "apiDnsName" : "sh360-api-d1",
 
     "dataLocation" : "westus",
-    "dataGroupName" : "sh-d2-data",
+    "dataGroupName" : "sh-d1-data",
 
-    "webGroupName" : "sh-d3-web",
+    "monitoringGroupName": "sh-d1-apm",
+    "webGroupName" : "sh-d1-web",
 
     "configStorageName": "sh360cfg",
 
