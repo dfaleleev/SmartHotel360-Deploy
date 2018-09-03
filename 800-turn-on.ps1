@@ -53,8 +53,16 @@ Write-Host "Deploy Test Services: " -ForegroundColor Yellow
 Write-Host "Configure Routes: " -ForegroundColor Yellow
 .\030-configure-routes.ps1
 
+Write-Host "Deploy configs on kubernetes server." -ForegroundColor Yellow
+.\101-deploy-config-service.ps1
+
+Write-Host "Deploy configs on kubernetes server." -ForegroundColor Yellow
+.\110-create-web-resources.ps1
+
 # Wait a minute for kubernetes to start up properly.
 # TODO: Make more efficient way to wait for services start up.
 Start-Sleep -s 60
 
 Test-ApiMethods $config.apiDnsName
+
+
