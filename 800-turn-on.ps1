@@ -11,30 +11,44 @@ function Start-AksVms()
     }
 }
 
+function Test-UrlResponse($title, $url, $property, $value){
+
+    Write-Host "Try connection to $title '$url':" -ForegroundColor Yellow
+    $response = Invoke-RestMethod -Uri $url
+    if ( ($null -ne $response) ) {
+        $succeed = $false
+        if (-not [string]::IsNullOrEmpty($property)) {
+            $propertyValue = $($response | Select-Object -ExpandProperty $property)
+            Write-Host "Property: $propertyValue"
+            $succeed = ($propertyValue -like $value)
+        } else {
+            $succeed = $true
+        }
+
+        if ($succeed -eq $true) {
+            Write-Host "Connection to $title succeded" -ForegroundColor Green
+            return
+        } else {
+            Write-Host $response
+        }
+    }
+    
+    Write-Host "Connection to $title failed" -ForegroundColor Red
+}
+
 function Test-ApiMethods($hostName)
 {
     $apiServer = "http://$hostName.eastus.cloudapp.azure.com"
 
-    $urlTestApp = "$apiServer/wt"
+    # Wait a minute for kubernetes to start up properly.
+    # TODO: Make more efficient way to wait for services start up.
+    Start-Sleep -s 60
 
-    Write-Host "Try connection to Test API '$urlTestApp':" -ForegroundColor Yellow
-    $testAppResponse = Invoke-RestMethod -Uri $urlTestApp
-    if ( ($null -ne $testAppResponse) -and $testAppResponse.title -eq "API Root") {
-        Write-Host "Connection to API test app succeded" -ForegroundColor Green
-    } else {
-        Write-Host "Connection to API test app failed" -ForegroundColor Red
-    }
+    Test-UrlResponse "Test API" "$apiServer/wt" "title" "API Root"
 
-    $urlProfileApi = "$apiServer/profiles-api/profiles/shanselman@outlook.com"
+    Test-UrlResponse "Profile API" "$apiServer/profiles-api/profiles/shanselman@outlook.com" "userId" "shanselman@outlook.com"
 
-    Write-Host "Try connection to Test API '$urlProfileApi':" -ForegroundColor Yellow
-    $profileResponse = Invoke-RestMethod -Uri $urlProfileApi
-    Write-Host $profileResponse
-    if ( ($null -ne $profileResponse) -and $profileResponse.userId -eq "shanselman@outlook.com") {
-        Write-Host "Connection to profile API succeded" -ForegroundColor Green
-    } else {
-        Write-Host "Connection to profile API failed" -ForegroundColor Red
-    }
+    Test-UrlResponse "Web Config" "$apiServer/cfg/web.json" "" ""
 }
 
 $config = (Get-Content "config.json" -Raw) | ConvertFrom-Json
@@ -58,10 +72,6 @@ Write-Host "Deploy configs on kubernetes server." -ForegroundColor Yellow
 
 Write-Host "Deploy configs on kubernetes server." -ForegroundColor Yellow
 .\110-create-web-resources.ps1
-
-# Wait a minute for kubernetes to start up properly.
-# TODO: Make more efficient way to wait for services start up.
-Start-Sleep -s 60
 
 Test-ApiMethods $config.apiDnsName
 
