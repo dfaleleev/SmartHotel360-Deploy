@@ -1,12 +1,12 @@
 ﻿{
   "urls": {
-    "hotels": "http://sh360-api-d1.eastus.cloudapp.azure.com/hotels-api/api/",
-    "bookings": "http://sh360-api-d1.eastus.cloudapp.azure.com/bookings-api/api/",
-    "suggestions": "http://sh360-api-d1.eastus.cloudapp.azure.com/suggestions-api/api/",
-    "tasks": "http://sh360-api-d1.eastus.cloudapp.azure.com/tasks-api/api/",
-    "notifications": "http://sh360-api-d1.eastus.cloudapp.azure.com/notifications-api/api/",
-    "reviews": "http://sh360-api-d1.eastus.cloudapp.azure.com/reviews-api/api/",
-    "discounts": "http://sh360-api-d1.eastus.cloudapp.azure.com/discounts-api/api/",
+    "hotels": "http://sh360-api-d1.eastus.cloudapp.azure.com/hotels-api/",
+    "bookings": "http://sh360-api-d1.eastus.cloudapp.azure.com/bookings-api/",
+    "suggestions": "http://sh360-api-d1.eastus.cloudapp.azure.com/suggestions-api/",
+    "tasks": "http://sh360-api-d1.eastus.cloudapp.azure.com/tasks-api/",
+    "notifications": "http://sh360-api-d1.eastus.cloudapp.azure.com/notifications-api/",
+    "reviews": "http://sh360-api-d1.eastus.cloudapp.azure.com/reviews-api/",
+    "discounts": "http://sh360-api-d1.eastus.cloudapp.azure.com/discounts-api/",
     "images_base": "http://sh360imgpublic.blob.core.windows.net/"
   },
   "pets_config": {
