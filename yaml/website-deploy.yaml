@@ -1,0 +1,17 @@
+apiVersion: extensions/v1beta1
+kind: Deployment
+metadata:
+  name: website
+spec:
+  replicas: 1
+  template:
+    metadata:
+      labels:
+        app: smarthotels
+        component: website
+    spec:
+      containers:
+      - name: website
+        image: sh360.azurecr.io/smarthotel360.publicweb:latest
+        ports:
+        - containerPort: 80

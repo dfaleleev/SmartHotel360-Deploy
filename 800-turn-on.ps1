@@ -64,6 +64,9 @@ Write-Host "Deploy AKS Services: " -ForegroundColor Yellow
 Write-Host "Deploy Test Services: " -ForegroundColor Yellow
 .\021-deploy-test-services.ps1
 
+Write-Host "Deploy Web-Site on k8s: " -ForegroundColor Yellow
+.\022-deploy-web-site.ps1
+
 Write-Host "Configure Routes: " -ForegroundColor Yellow
 .\030-configure-routes.ps1
 

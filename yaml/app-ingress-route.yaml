@@ -63,3 +63,8 @@ spec:
         backend:
           serviceName: config-svc
           servicePort: 80
+      - path: /
+        backend:
+          serviceName: website
+          servicePort: 80
+
