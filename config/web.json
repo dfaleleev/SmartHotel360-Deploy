@@ -10,11 +10,10 @@
     "images_base": "http://sh360imgpublic.blob.core.windows.net/"
   },
   "pets_config": {
-    "blobName": "",
-    "blobKey": "",
-    "cosmosUri": "https://xxxxxx.documents.azure.com:443/",
-    "cosmosKey": ""
-
+    "blobName": "sh360strfuncappviacode",
+    "blobKey": "lTY4ehLQYWXUG4LqlVPqVCRZpqfpCqqYrxSvVumOAjXdy1FGqRpRvTNQ3YTc+7QxrT5ZYlpaUcCaK2CqR6ZSSQ==",
+    "cosmosUri": "https://sh360cosmosdb-viacode.documents.azure.com:443/",
+    "cosmosKey": "7a8RqpzqTyZGuVaaZ1wZ7LzcsPGS6RQ15NBWk5fGjgYF9DnUR1a3Iao5Ijh5Il1WjKSLh6sdIYQjNEZTNrEk9w=="
   },
   "tokens": {
     "bingmaps": "9D6ZuqeGpcfZ9PVYR1BQ~ofsY_N_KDywcNM-Y0Io5aA~AvqaBtSnHxFfX7flAqux2Q6eYSIreLwDxnswabgPlEOXmoEXXt6u1O6In0hqICy8"
