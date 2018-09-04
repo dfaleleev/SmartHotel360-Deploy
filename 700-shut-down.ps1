@@ -11,8 +11,8 @@ function Stop-AksVms()
     })
 
     $vms | ForEach-Object {
-        Write-Host $_ -ForegroundColor Yellow
-        az vm deallocate --id $_
+        Write-Host "Send request to deallocate VM: $_" -ForegroundColor Yellow
+        az vm deallocate --id $_ --no-wait
     }
 }
 
