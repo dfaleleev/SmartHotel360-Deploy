@@ -20,5 +20,6 @@ $config = (Get-Content "config.json" -Raw) | ConvertFrom-Json
 
 Stop-AksVms 
 Remove-Group $config.dataGroupName
-Remove-Group $config.webGroupName
+# Web-Group has cosmosdb and azure function resources 
+# Remove-Group $config.webGroupName
 

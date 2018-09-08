@@ -73,8 +73,8 @@ Write-Host "Configure Routes: " -ForegroundColor Yellow
 Write-Host "Deploy configs on kubernetes server." -ForegroundColor Yellow
 .\101-deploy-config-service.ps1
 
-Write-Host "Deploy configs on kubernetes server." -ForegroundColor Yellow
-.\110-create-web-resources.ps1
+# Write-Host "Deploy web site related resources." -ForegroundColor Yellow
+# .\110-create-web-resources.ps1
 
 Test-ApiMethods $config.apiDnsName
 
