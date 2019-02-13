@@ -4,7 +4,9 @@ function New-Resources($location, $groupName) {
     az group deployment create --resource-group $groupName --parameters .\arm\azuredeploy.parameters.json --template-file .\arm\appinsights.json --verbose --mode Incremental
 }
 
-$config = (Get-Content "config.json" -Raw) | ConvertFrom-Json
+Write-Host "! Script is temporary disabled." -ForegroundColor Red
 
-New-Resources $config.location $config.monitoringGroupName
+# $config = (Get-Content "config.json" -Raw) | ConvertFrom-Json
+
+# New-Resources $config.location $config.monitoringGroupName
 

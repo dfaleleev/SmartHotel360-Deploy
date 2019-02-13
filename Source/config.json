@@ -1,18 +1,22 @@
 {
+    "subscription" : "f8b43585-137e-43d4-9c0e-5b9cc8139097",
+    "spnClientId" : "f44e8f54-cac9-47a1-865a-1c4e3a7637a7", 
+    "spnPassword" : "eeb32ad4-87ac-4dcd-b143-4ee5cd6a4ea1",
+
     "location" : "eastus",
     "acrGroupName" : "acr",
     "acrName" : "sh360",
     
-    "aksGroupName" : "sh-d1-aks",
-    "aksName" : "sh-k8s-d1",
+    "aksGroupName" : "sh360",
+    "aksName" : "sh360-aks",
 
-    "apiDnsName" : "sh360-api-d1",
+    "apiDnsName" : "sh360-api-viacode",
 
     "dataLocation" : "westus",
-    "dataGroupName" : "sh-d1-data",
+    "dataGroupName" : "sh360-data",
 
-    "monitoringGroupName": "sh-d1-apm",
-    "webGroupName" : "sh-d1-web",
+    "monitoringGroupName": "sh360-apm",
+    "webGroupName" : "sh360-web",
 
     "configStorageName": "sh360cfg",
 

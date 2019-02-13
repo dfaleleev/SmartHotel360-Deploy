@@ -23,7 +23,7 @@ function Create-Ingress() {
 }
 
 function Get-IngressIp() {
-    return $(kubectl get svc sh360-nginx-ingress-controller -n ingress-nginx -o=jsonpath="{.status.loadBalancer.ingress[0].ip}")
+    return $(kubectl get svc addon-http-application-routing-nginx-ingress -n kube-system -o=jsonpath="{.status.loadBalancer.ingress[0].ip}")
 }
 
 function Find-IngressIp() {
@@ -61,7 +61,7 @@ function Set-DnsName ($ip, $dnsName) {
 
 function Initialize-Ingress($apiDnsName) {
 
-    Create-Ingress
+    # Create-Ingress
 
     $ipAddress = Find-IngressIp
 
@@ -72,6 +72,8 @@ function Initialize-Ingress($apiDnsName) {
     }
 }
 
+#Write-Host "! Script is temporary disabled." -ForegroundColor Red
 $config = (Get-Content "config.json" -Raw) | ConvertFrom-Json
 
 Initialize-Ingress $config.apiDnsName
+
