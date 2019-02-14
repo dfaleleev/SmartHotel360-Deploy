@@ -1,1 +1,1 @@
-kubectl apply -f .\yaml\app-ingress-route.yaml
+# kubectl apply -f .\yaml\app-ingress-route.yaml
