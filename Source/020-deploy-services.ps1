@@ -11,19 +11,12 @@ if (-not (Test-Path -Path $configLocation) ) {
     exit;
 }
 
-Push-Location ..\..\backend\Source\setup
+$config = Get-Config
+Set-BackendDeploymentVariables $config
+
     
 try {
-
-    .\00-set-vars.ps1 `
-        -subscription $config.subscription `
-        -resourceGroup $config.aksGroupName `
-        -clusterName $config.aksName `
-        -registry $config.acrName `
-        -location $config.location `
-        -sh360AppName sh360 `
-        -spnClientId $config.spnClientId `
-        -spnPassword $config.spnPassword
+    Push-LocationToBackendSetup $config   
 
     # Deploy services into k8s cluster
     Write-Host "Deploy services into k8s cluster" -ForegroundColor Yellow
