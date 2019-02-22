@@ -71,9 +71,40 @@ function Push-LocationToBackendSetup($config)
     Push-Location ..\..\backend\Source\setup
 }
 
+function Get-PublicIngressIp() {
+    return $(kubectl get svc addon-http-application-routing-nginx-ingress -n kube-system -o=jsonpath="{.status.loadBalancer.ingress[0].ip}")
+}
+
+function Set-DnsName ($ip, $dnsName) {
+    Write-Host "Seting DNS '$dnsName' to '$ip' IP " -ForegroundColor Yellow
+    # Get the resource-id of the public ip
+    $ipQuery = "[?ipAddress!=null]|[?contains(ipAddress, '$ip')].[id]"
+    
+    $publicIpId = $(az network public-ip list --query $ipQuery --output tsv)
+
+    if (-not [string]::IsNullOrEmpty($publicIpId)) {
+        # Update public ip address with DNS name
+        az network public-ip update --ids $publicIpId --dns-name $dnsName
+    } else {
+        Write-Host "Specified public ip '$ip' not found." -ForegroundColor Red
+    }
+}
+
+function Set-IngressDnsName($apiDnsName) {
+    $ipAddress = Get-PublicIngressIp
+
+    if (![string]::IsNullOrEmpty($ipAddress)) {
+        Set-DnsName $ipAddress $apiDnsName
+    } else {
+        Write-Host "Ingress IP Address not found. Try Again later." -ForegroundColor Red
+    }
+}
 
 # Export Section
 
 Export-ModuleMember -Function Get-Config
 Export-ModuleMember -Function Set-BackendDeploymentVariables
 Export-ModuleMember -Function Push-LocationToBackendSetup
+Export-ModuleMember -Function Get-PublicIngressIp
+Export-ModuleMember -Function Set-DnsName
+Export-ModuleMember -Function Set-IngressDnsName
