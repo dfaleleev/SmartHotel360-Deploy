@@ -1,5 +1,6 @@
 Import-Module .\deploy.psm1
 
+$location = Get-Location
 $config = Get-Config
 Set-BackendDeploymentVariables $config
 
@@ -8,6 +9,6 @@ try {
 
     .\01-Aks-Create.ps1
 } finally {
-    Pop-Location
+    Set-Location $location
 }
 

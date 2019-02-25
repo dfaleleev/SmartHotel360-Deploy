@@ -1,3 +1,7 @@
+Import-Module .\deploy.psm1
+
+$location = Get-Location
+
 $config = Get-Config
 Set-BackendDeploymentVariables $config
 
@@ -9,5 +13,5 @@ try {
     .\02-Deploy-Apis.ps1 -httpRouting $true -createAcr $false
 
 } finally {
-    Pop-Location
+    Set-Location $location
 }
