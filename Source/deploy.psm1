@@ -68,7 +68,9 @@ function Set-BackendDeploymentVariables($config) {
 
 function Push-LocationToBackendSetup($config)
 {
-    Push-Location ..\..\backend\Source\setup
+    Write-Host "Set location $($config.backend.scriptLocation)";
+
+    Push-Location $config.backend.scriptLocation
 }
 
 function Get-PublicIngressIp() {

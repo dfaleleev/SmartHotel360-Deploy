@@ -20,5 +20,9 @@
 
     "configStorageName": "sh360cfg",
 
+    "backend" : {
+        "scriptLocation" : "..\\..\\backend\\Source\\setup"
+    },
+
     "_" : ""
 }
